@@ -1,11 +1,10 @@
 package com.rain.shiro.repository;
 
-import org.springframework.data.repository.Repository;
 
+import com.rain.shiro.common.service.BaseDao;
 import com.rain.shiro.domain.User;
 
-public interface UserDao extends Repository<User, Integer>{
+public interface UserDao extends BaseDao<User>{
 	
-	public User findOne(Integer id);
-
+	public User findByUsername(String username);
 }

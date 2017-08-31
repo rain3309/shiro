@@ -32,6 +32,10 @@ import org.hibernate.annotations.DynamicUpdate;
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	//会员
+	public final static int MEMBER = 0;
+	//管理员
+	public final static int ADMIN = 1 ;
 	
 	private Integer id;								//ID
 	private String username;						//用户名
@@ -43,7 +47,7 @@ public class User implements Serializable{
 	private String phone;							//电话
 	private Date birthDay;							//出生年月
 	private String rank;							//等级
-	private String type;							//类型
+	private int type;							//类型
 	private String stutas;							//状态
 	
 	private List<UserRole> userRoles = new ArrayList<>();
@@ -127,10 +131,10 @@ public class User implements Serializable{
 		this.rank = rank;
 	}
 	@Column(name="f_type",length=8)
-	public String getType() {
+	public int getType() {
 		return type;
 	}
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 	@Column(name="f_stutas",length=8)
