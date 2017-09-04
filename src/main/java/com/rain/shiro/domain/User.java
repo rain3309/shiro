@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
@@ -47,8 +49,10 @@ public class User implements Serializable{
 	private String phone;							//电话
 	private Date birthDay;							//出生年月
 	private String rank;							//等级
-	private int type;							//类型
+	private int type;								//类型
 	private String stutas;							//状态
+	private Org org;
+	private MemberGroup group;
 	
 	private List<UserRole> userRoles = new ArrayList<>();
 	private List<UserOrg> userOrgs = new ArrayList<>();
@@ -175,5 +179,23 @@ public class User implements Serializable{
 	public void setDetails(Set<UserDetail> details) {
 		this.details = details;
 	}
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="f_org_id",nullable=false)
+	public Org getOrg() {
+		return org;
+	}
+	public void setOrg(Org org) {
+		this.org = org;
+	}
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="f_membergroup_id",nullable=false)
+	public MemberGroup getGroup() {
+		return group;
+	}
+	public void setGroup(MemberGroup group) {
+		this.group = group;
+	}
 
+	
 }
